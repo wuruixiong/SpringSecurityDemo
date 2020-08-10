@@ -5,7 +5,13 @@ import javax.persistence.*;
 
 public class SecurityUserBean {
 
-    public static enum Roles { admin, normal}
+    public static enum Roles {
+        admin, normal;
+        @Override
+        public String toString() {
+            return this.name();
+        }
+    }
 
     private Integer id;
 
