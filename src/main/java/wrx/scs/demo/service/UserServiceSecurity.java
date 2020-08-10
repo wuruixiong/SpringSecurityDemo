@@ -22,13 +22,17 @@ public class UserServiceSecurity implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        // 从数据库中获取用户信息
         SecurityUserBean securityUserBean = userService.selectUserByName(s);
         if (securityUserBean == null) {
             throw new UsernameNotFoundException("用户不存在！");
         }
 
         List<GrantedAuthority> list = new ArrayList<>();
+        // "ROLE_"前缀必须加，不然检测不出来
         list.add(new SimpleGrantedAuthority("ROLE_" + securityUserBean.getRole().toString()));
+        // User的jar包不能导错
+        // 返回数据库中的密码等信息，接下来准备进行校验密码
         User user = new User(securityUserBean.getUsername(), securityUserBean.getPassword(), list);
 
         return user;
