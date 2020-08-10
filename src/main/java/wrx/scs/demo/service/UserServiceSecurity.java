@@ -38,7 +38,4 @@ public class UserServiceSecurity implements UserDetailsService {
         return user;
     }
 
-
-
-
 }

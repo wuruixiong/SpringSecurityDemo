@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import wrx.scs.demo.bean.SecurityUserBean;
@@ -23,8 +24,10 @@ public class STConfig extends WebSecurityConfigurerAdapter {
     // 设置没有密码加密
     @Bean
     PasswordEncoder passwordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
+        //return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
