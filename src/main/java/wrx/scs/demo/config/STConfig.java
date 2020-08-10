@@ -31,12 +31,18 @@ public class STConfig extends WebSecurityConfigurerAdapter {
                 .withUser("cc").password("123").roles("USER");
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.formLogin()                    //  定义当需要用户登录时候，转到的登录页面。
+        http
+                .formLogin()                    //  定义当需要用户登录时候，转到的登录页面。
                 .and()
+                .authorizeRequests()       // 定义哪些URL需要被保护、哪些不需要被保护
 
-                .authorizeRequests()        // 定义哪些URL需要被保护、哪些不需要被保护
+                // 开放/hello下所有的资源，不需要登录就能访问
+                .antMatchers("/hello")
+                .permitAll()
+
                 // 能访问 /admin的只有 "ADMIN" 权限
                 .antMatchers("/admin/**")
                 .hasRole("ADMIN")
