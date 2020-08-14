@@ -1,8 +1,6 @@
 package wrx.scs.demo.bean;
 
 
-import javax.persistence.*;
-
 public class SecurityUserBean {
 
     public static enum Roles {

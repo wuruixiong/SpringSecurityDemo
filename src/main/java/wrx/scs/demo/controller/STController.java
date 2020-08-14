@@ -57,7 +57,7 @@ public class STController {
         return "db";
     }
 
-    @RequestMapping("/user/hello")
+    @RequestMapping("/normal/hello")
     public String hello4(){
         return "user";
     }
